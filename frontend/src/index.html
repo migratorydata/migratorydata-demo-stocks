@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="Realtime web app created with MigratoryData" />
+	<title>Stocks Demo for MigratoryData</title>
+
+	<link href="css/app.css" rel="stylesheet">
+</head>
+
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+
+	<div id="page" class="site">
+		<main id="content" class="site-content">
+			<div id="tableId" class="inner">
+				<center>
+					<h1>MigratoryData Stocks Demo</h1>
+				</center>
+				<h3><select id="subscribeMenu" onchange="addRow(this)"></select></h3>
+				<script type="text/javascript" src="lib/migratorydata-client.js"></script>
+				<script type="text/javascript" src="lib/dynamic-table.js"></script>
+				<script type="text/javascript" src="app/config.js"></script>
+				<script type="text/javascript" src="app/ui.js"></script>
+				<script type="text/javascript" src="app/app.js"></script>
+			</div>
+		</main>
+	</div>
+</body>
+
+</html>
