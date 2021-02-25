@@ -1,32 +1,32 @@
-var TOKEN = "same-token";
+var TOKEN = "some-token";
 
 var SERVERS = [
     "http://127.0.0.1:8800",
 ];
 
 var SYMBOLS = [
-    "/stocks/AWERQ", 
-    "/stocks/WERZF", 
-    "/stocks/QWZAF", 
-    "/stocks/TEYDF", 
-    "/stocks/TYUII", 
-    "/stocks/XCVSD", 
-    "/stocks/POUVB", 
-    "/stocks/TYEWD", 
-    "/stocks/WYWUI",
+    "AWERQ", 
+    "WERZF", 
+    "QWZAF", 
+    "TEYDF", 
+    "TYUII", 
+    "XCVSD", 
+    "POUVB", 
+    "TYEWD", 
+    "WYWUI",
 ];
 
 var ACTIVE_SYMBOLS = [
-    "/stocks/AWERQ", 
-    "/stocks/WERZF", 
-    "/stocks/QWZAF", 
-    "/stocks/TEYDF", 
-    "/stocks/TYUII",
+    "AWERQ", 
+    "WERZF", 
+    "QWZAF", 
+    "TEYDF", 
+    "TYUII",
 ];
 
 var FIELDS = [
     "TIME", 
-    "LAST",
+    "PRICE",
     "CHANGE", 
 ];
 

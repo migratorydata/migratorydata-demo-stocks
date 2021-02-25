@@ -69,14 +69,11 @@ public class Publisher {
 
         builder.append("{");
         // add last price
-        builder.append('"').append("LAST").append('"').append(":");
+        builder.append('"').append("PRICE").append('"').append(":");
         builder.append('"').append(String.format(Locale.US, "%1$.2f", stock.getLastPrice())).append('"').append(",");
         // add change
         builder.append('"').append("CHANGE").append('"').append(":");
         builder.append('"').append(String.format(Locale.US, "%1$.2f", stock.getChange())).append('"').append(",");
-        // add percent change
-        builder.append('"').append("CHANGE%").append('"').append(":");
-        builder.append('"').append(String.format(Locale.US, "%1$.2f", stock.getChangePercent())).append('"').append(",");
         // add timestamp
         builder.append('"').append("TIME").append('"').append(":");
         builder.append('"').append(String.format(Locale.US, "%1$tT", Calendar.getInstance())).append('"');

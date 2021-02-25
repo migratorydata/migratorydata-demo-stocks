@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		if (args.length != 5) {
 			System.err.println("USAGE: java -jar ticker.jar ServerAddress ServerPort EntitlementToken Encryption Symbols");
-			System.err.println("EXAMPLE: java -jar ticker.jar 127.0.0.1 8800 some-token false '/stocks/AWERQ, /stocks/WERZF'");
+			System.err.println("EXAMPLE: java -jar ticker.jar 127.0.0.1 8800 some-token false 'AWERQ,WERZF,QWZAF,TEYDF,TYUII,XCVSD,POUVB,TYEWD,WYWUI'");
 			System.exit(1);
 		}
 
