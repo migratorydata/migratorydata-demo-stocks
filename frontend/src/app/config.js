@@ -1,27 +1,27 @@
 var TOKEN = "some-token";
 
 var SERVERS = [
-    "http://127.0.0.1:8800",
+    "https://demo.migratorydata.com",
 ];
 
 var SYMBOLS = [
-    "AWERQ", 
-    "WERZF", 
-    "QWZAF", 
-    "TEYDF", 
-    "TYUII", 
-    "XCVSD", 
-    "POUVB", 
-    "TYEWD", 
-    "WYWUI",
+    "/AWERQ", 
+    "/WERZF", 
+    "/QWZAF", 
+    "/TEYDF", 
+    "/TYUII", 
+    "/XCVSD", 
+    "/POUVB", 
+    "/TYEWD", 
+    "/WYWUI",
 ];
 
 var ACTIVE_SYMBOLS = [
-    "AWERQ", 
-    "WERZF", 
-    "QWZAF", 
-    "TEYDF", 
-    "TYUII",
+    "/AWERQ", 
+    "/WERZF", 
+    "/QWZAF", 
+    "/TEYDF", 
+    "/TYUII",
 ];
 
 var FIELDS = [
