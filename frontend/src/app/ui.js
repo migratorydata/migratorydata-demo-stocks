@@ -20,19 +20,11 @@ function updateSelectableStocks() {
 
 	var selectableSymbols = [];
 	var index = 0;
-	var test = true;
 	for (i = 0; i < SYMBOLS.length; i++) {
-		for (j = 0; j < ACTIVE_SYMBOLS.length; j++) {
-			if (SYMBOLS[i] == ACTIVE_SYMBOLS[j]) {
-				test = false;
-				break;
-			}
-		}
-		if (test == true) {
+		if (ACTIVE_SYMBOLS.indexOf(SYMBOLS[i]) == -1) {
 			selectableSymbols[index] = SYMBOLS[i];
 			index++;
 		}
-		test = true;
 	}
 
     select.add(new Option("- add symbol -"));
@@ -43,16 +35,7 @@ function updateSelectableStocks() {
 
 function addRow(selection) {
 	var symbol = selection.value;
-	if (symbol == "- add symbol -") {
-		alert("add a new symbol");
-		return;
-	}
-	for (var i = 0; i < ACTIVE_SYMBOLS.length; i++) {
-		if (symbol == ACTIVE_SYMBOLS[i]) {
-			alert("symbol already subscribed");
-			return;
-		}
-	}
+
 	ACTIVE_SYMBOLS[ACTIVE_SYMBOLS.length] = symbol;
 
 	table.addRow();
@@ -64,22 +47,8 @@ function addRow(selection) {
 }
 
 function removeRow(symbol) {
-	var itemIndex = -1;
-	for (var i = 0; i < ACTIVE_SYMBOLS.length; i++) {
-		if (symbol == ACTIVE_SYMBOLS[i]) {
-			itemIndex = i;
-			break;
-		}
-	}
-	if (itemIndex == -1) {
-		alert("invalid symbol: '" + symbol + "'");
-		return;
-	}
-	delete ACTIVE_SYMBOLS[itemIndex];
-	for (var i = itemIndex; i < ACTIVE_SYMBOLS.length - 1; i++) {
-		ACTIVE_SYMBOLS[i] = ACTIVE_SYMBOLS[i + 1];
-	}
-	ACTIVE_SYMBOLS.pop();
+	var itemIndex = ACTIVE_SYMBOLS.indexOf(symbol);
+	ACTIVE_SYMBOLS.splice(itemIndex, 1);
 
 	table.removeRow(itemIndex + 1);
 	updateSelectableStocks();

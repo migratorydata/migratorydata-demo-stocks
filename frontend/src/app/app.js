@@ -12,12 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	MigratoryDataClient.setMessageHandler(function(message) {
 		var subject = message.subject;
 		var fields = JSON.parse(message.content);
-		for (var fieldName in fields) {
-			for (var i = 0; i < ACTIVE_SYMBOLS.length; i++) {
-				if (ACTIVE_SYMBOLS[i] == subject) {
-					updateField(i, fieldName, fields[fieldName]);
-					break;
-				}
+
+		var stockIndex = ACTIVE_SYMBOLS.indexOf(subject);
+		if ( stockIndex >= 0) {
+			for (var fieldName in fields) {
+				updateField(stockIndex, fieldName, fields[fieldName]);
 			}
 		}
     });	
@@ -29,23 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateField(stockIndex, fieldName, value) {
-	for (var i = 0; i < FIELDS.length; i++) {
-		if (FIELDS[i] == fieldName) {
-			if (fieldName == "CHANGE") {
-				if (value > 0) {
-					table.drawText(i + 1, stockIndex + 1, value + "&#x25B2;", "green");
-				} else if (value < 0) {
-					table.drawText(i + 1, stockIndex + 1, value + "&#x25BC;", "red");
-				} else {
-					table.drawText(i + 1, stockIndex + 1, value);
-				}
-			} else {
-				table.drawText(i + 1, stockIndex + 1, value);
-			}
-			table.setColor(i + 1, stockIndex + 1);
-			table.setTimestamp(i + 1, stockIndex + 1, new Date());
+	var fieldIndex = FIELDS.indexOf(fieldName);
+	if (fieldName == "CHANGE") {
+		if (value > 0) {
+			table.drawText(fieldIndex + 1, stockIndex + 1, value + "&#x25B2;", "green");
+		} else if (value < 0) {
+			table.drawText(fieldIndex + 1, stockIndex + 1, value + "&#x25BC;", "red");
+		} else {
+			table.drawText(fieldIndex + 1, stockIndex + 1, value);
 		}
+	} else {
+		table.drawText(fieldIndex + 1, stockIndex + 1, value);
 	}
+	table.setColor(fieldIndex + 1, stockIndex + 1);
+	table.setTimestamp(fieldIndex + 1, stockIndex + 1, new Date());
 }
 
 function blink() {

@@ -24,9 +24,7 @@ public class Publisher {
         client.setEntitlementToken(token);
 
         // specify whether to connect using encryption or not
-        if (encryption) {
-            client.setEncryption(true);
-        }
+        client.setEncryption(encryption);
 
         // define the handler for processing the messages received by the MigratoryData client as well as the status notifications
         client.setListener(new MigratoryDataListener() {
