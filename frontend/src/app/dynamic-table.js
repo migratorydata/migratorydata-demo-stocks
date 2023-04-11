@@ -1,5 +1,5 @@
 /* Basic Implementation of a Dynamic Table */
-function DynamicTable(tableElementId, width, height) {
+export function DynamicTable(tableElementId, width, height) {
     this.width = width;
     this.height = height;
     this.tds = new Array();

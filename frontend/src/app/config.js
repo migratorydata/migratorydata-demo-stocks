@@ -1,34 +1,37 @@
-var TOKEN = "some-token";
+export let config = {
+    TOKEN: "some-token",
 
-var SERVERS = [
-    "https://demo.migratorydata.com",
-];
-
-var SYMBOLS = [
-    "/AWERQ", 
-    "/WERZF", 
-    "/QWZAF", 
-    "/TEYDF", 
-    "/TYUII", 
-    "/XCVSD", 
-    "/POUVB", 
-    "/TYEWD", 
-    "/WYWUI",
-];
-
-var ACTIVE_SYMBOLS = [
-    "/AWERQ", 
-    "/WERZF", 
-    "/QWZAF", 
-    "/TEYDF", 
-    "/TYUII",
-];
-
-var FIELDS = [
-    "TIME", 
-    "PRICE",
-    "CHANGE", 
-];
-
-var table;
-var blinkTimer;
+    SERVERS: [
+        "https://demo.migratorydata.com",
+    ],
+    
+    SYMBOLS: [
+        "/AWERQ", 
+        "/WERZF", 
+        "/QWZAF", 
+        "/TEYDF", 
+        "/TYUII", 
+        "/XCVSD", 
+        "/POUVB", 
+        "/TYEWD", 
+        "/WYWUI",
+    ],
+    
+    ACTIVE_SYMBOLS: [
+        "/AWERQ", 
+        "/WERZF", 
+        "/QWZAF", 
+        "/TEYDF", 
+        "/TYUII",
+    ],
+    
+    FIELDS: [
+        "TIME", 
+        "PRICE",
+        "CHANGE", 
+    ],
+    
+    table: null,
+    blinkTimer: null,
+    client: null
+}
