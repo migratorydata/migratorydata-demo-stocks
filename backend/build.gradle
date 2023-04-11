@@ -7,12 +7,8 @@ repositories {
     jcenter()
 }
 
-sourceSets {
-    main.java.srcDirs = ['src']
-}
-
 dependencies {
-    compile files('lib/migratorydata-client-java.jar')
+    implementation group: 'com.migratorydata', name: 'client-java-api', version: '6.0.0'
 }
 
 jar {
@@ -27,5 +23,5 @@ jar {
 }
 
 application {
-    mainClass = 'com.migratorydata.demos.ticker.Main'
+    mainClassName = 'com.migratorydata.demos.ticker.Main'
 }
