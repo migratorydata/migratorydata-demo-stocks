@@ -5,6 +5,7 @@ dist/
 out/
 
 frontend/site/bundle.js
+frontend/site/config.js
 
 frontend/node_modules
 # Java class files

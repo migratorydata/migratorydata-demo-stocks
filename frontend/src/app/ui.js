@@ -1,20 +1,18 @@
 import {DynamicTable} from './dynamic-table';
-import {config} from './config';
 
 export function createStockTable() {
-	var table = new DynamicTable("tableId", config.FIELDS.length + 2, config.ACTIVE_SYMBOLS.length + 1);
-	config.table = table;
+	table = new DynamicTable("tableId", FIELDS.length + 2, ACTIVE_SYMBOLS.length + 1);
 	table.setRemoveRowCallback(removeRow);
 
 	table.drawBoldText(0, 0, "SYMBOL");
-	for (var i = 0; i < config.FIELDS.length; i++) {
-		table.drawBoldText(i + 1, 0, config.FIELDS[i]);
+	for (var i = 0; i < FIELDS.length; i++) {
+		table.drawBoldText(i + 1, 0, FIELDS[i]);
 	}
-	table.drawBoldText(config.FIELDS.length + 1, 0, "");
+	table.drawBoldText(FIELDS.length + 1, 0, "");
 
-	for (var i = 0; i < config.ACTIVE_SYMBOLS.length; i++) {
-		table.drawText(0, i + 1, config.ACTIVE_SYMBOLS[i], config.ACTIVE_SYMBOLS[i]);
-		table.drawButton(config.FIELDS.length + 1, i + 1, config.ACTIVE_SYMBOLS[i]);
+	for (var i = 0; i < ACTIVE_SYMBOLS.length; i++) {
+		table.drawText(0, i + 1, ACTIVE_SYMBOLS[i], ACTIVE_SYMBOLS[i]);
+		table.drawButton(FIELDS.length + 1, i + 1, ACTIVE_SYMBOLS[i]);
 	}
 }
 
@@ -24,9 +22,9 @@ export function updateSelectableStocks() {
 
 	var selectableSymbols = [];
 	var index = 0;
-	for (var i = 0; i < config.SYMBOLS.length; i++) {
-		if (config.ACTIVE_SYMBOLS.indexOf(config.SYMBOLS[i]) == -1) {
-			selectableSymbols[index] = config.SYMBOLS[i];
+	for (var i = 0; i < SYMBOLS.length; i++) {
+		if (ACTIVE_SYMBOLS.indexOf(SYMBOLS[i]) == -1) {
+			selectableSymbols[index] = SYMBOLS[i];
 			index++;
 		}
 	}
@@ -40,31 +38,28 @@ export function updateSelectableStocks() {
 export function addRow(selection) {
 	var symbol = selection.value;
 
-	config.ACTIVE_SYMBOLS[config.ACTIVE_SYMBOLS.length] = symbol;
-
-	var table = config.table;
+	ACTIVE_SYMBOLS[ACTIVE_SYMBOLS.length] = symbol;
 
 	table.addRow();
-	table.drawText(0, config.ACTIVE_SYMBOLS.length, symbol);
-	table.drawButton(config.FIELDS.length + 1, config.ACTIVE_SYMBOLS.length, symbol);
+	table.drawText(0, ACTIVE_SYMBOLS.length, symbol);
+	table.drawButton(FIELDS.length + 1, ACTIVE_SYMBOLS.length, symbol);
 	updateSelectableStocks();
 
-	config.client.subscribe([symbol]);
+	client.subscribe([symbol]);
 }
 
 export function removeRow(symbol) {
-	var itemIndex = config.ACTIVE_SYMBOLS.indexOf(symbol);
-	config.ACTIVE_SYMBOLS.splice(itemIndex, 1);
+	var itemIndex = ACTIVE_SYMBOLS.indexOf(symbol);
+	ACTIVE_SYMBOLS.splice(itemIndex, 1);
 
-	config.table.removeRow(itemIndex + 1);
+	table.removeRow(itemIndex + 1);
 	updateSelectableStocks();
 	
-	config.client.unsubscribe([symbol]);
+	client.unsubscribe([symbol]);
 }
 
 export function updateField(stockIndex, fieldName, value) {
-	var table = config.table;
-	var fieldIndex = config.FIELDS.indexOf(fieldName);
+	var fieldIndex = FIELDS.indexOf(fieldName);
 	if (fieldName == "CHANGE") {
 		if (value > 0) {
 			table.drawText(fieldIndex + 1, stockIndex + 1, value + "&#x25B2;", "green");
@@ -82,12 +77,12 @@ export function updateField(stockIndex, fieldName, value) {
 
 export function blink() {
 	var now = new Date();
-	for (var i = 0; i < config.FIELDS.length; i++) {
-		for (var j = 0; j < config.ACTIVE_SYMBOLS.length; j++) {
-			var timestamp = config.table.getTimestamp(i + 1, j + 1);
+	for (var i = 0; i < FIELDS.length; i++) {
+		for (var j = 0; j < ACTIVE_SYMBOLS.length; j++) {
+			var timestamp = table.getTimestamp(i + 1, j + 1);
 			if (timestamp != null && timestamp != 0) {
 				if (now - timestamp > 1000) {
-					config.table.setBlankColor(i + 1, j + 1);
+					table.setBlankColor(i + 1, j + 1);
 				}
 			}
 		}

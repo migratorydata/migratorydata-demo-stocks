@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -18,6 +19,11 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /pako/,
       contextRegExp: /migratorydata-client\/lib$/,
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./src/app/config.js", to: "" },
+      ],
+    }),
   ]
 };

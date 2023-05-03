@@ -1,35 +1,38 @@
 var MigratoryDataClient = require("migratorydata-client");
 
-import {config} from './app/config.js';
 import * as ui from './app/ui.js';
 
-ui.createStockTable();
-ui.updateSelectableStocks();
+export function beginStocksDemo() {
 
-// init the MigratoryData client
-var client = new MigratoryDataClient();
-config.client = client;
+	ui.createStockTable();
+	ui.updateSelectableStocks();
 
-client.setEntitlementToken(config.TOKEN);
-client.setServers(config.SERVERS);
-client.setStatusHandler(function(event) {
-	console.log("Status : " + event.type + " : " + event.info);
-});
-client.setMessageHandler(function(message) {
-	var subject = message.subject;
-	var fields = JSON.parse(message.content);
+	// init the MigratoryData client
+	client = new MigratoryDataClient();
 
-	var stockIndex = config.ACTIVE_SYMBOLS.indexOf(subject);
-	if ( stockIndex >= 0) {
-		for (var fieldName in fields) {
-			ui.updateField(stockIndex, fieldName, fields[fieldName]);
+	client.setEntitlementToken(TOKEN);
+	client.setServers(SERVERS);
+	client.setStatusHandler(function (event) {
+		console.log("Status : " + event.type + " : " + event.info);
+	});
+	client.setMessageHandler(function (message) {
+		var subject = message.subject;
+		var fields = JSON.parse(message.content);
+
+		var stockIndex = ACTIVE_SYMBOLS.indexOf(subject);
+		if (stockIndex >= 0) {
+			for (var fieldName in fields) {
+				ui.updateField(stockIndex, fieldName, fields[fieldName]);
+			}
 		}
-	}
-});	
+	});
 
-client.subscribe(config.ACTIVE_SYMBOLS);
+	client.subscribe(ACTIVE_SYMBOLS);
 
-client.connect();
+	client.connect();
 
-// init the blink timer
-config.blinkTimer = setInterval(ui.blink, 100);
+	// init the blink timer
+	blinkTimer = setInterval(ui.blink, 100);
+}
+
+window.beginStocksDemo = beginStocksDemo;
