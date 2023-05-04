@@ -1,0 +1,41 @@
+# docker build -t cloud-control-center .
+
+version: '3'
+services:
+  migratorydata:
+    image: migratorydata/server:latest
+    hostname: migratory
+    container_name: migratorydata
+    restart: always
+    ports:
+      - "8800:8800"
+    networks:
+      - my_network
+    environment:
+      MIGRATORYDATA_JAVA_EXTRA_OPTS: '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
+
+  stocks-agent:
+    image: backend
+    build: ./backend
+    restart: always
+    networks:
+      - my_network
+    environment:
+      - SERVER=migratory
+      - PORT=8800
+      - TOKEN=some-token
+      - ENCRYPTION=false
+      - TOPICS=/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI
+
+  frontend:
+    image: frontend
+    build: ./frontend
+    restart: always
+    networks:
+      - my_network
+    ports:
+      - "8080:8080"
+
+networks:
+  my_network:
+    driver: bridge

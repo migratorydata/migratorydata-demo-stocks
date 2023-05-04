@@ -17,3 +17,12 @@ Check the Readme files in the folders `backend` and respectively `frontend`.
 ## Run
 
 Check the Readme files in the folders `backend` and respectively `frontend`.
+
+
+## Run with docker compose
+
+If there is docker installed on the machine you can see the example running using the `docker compose up` command.
+
+The example can be accessed using a browser at address `http://127.0.0.1:8080`. 
+
+The `docker-compose.yaml` file starts three services. The MigratoryData server used by backend service and frontend service for communication. The backend service is a stocks agent which publishes data on stocks symbols. The frontend service subscribes to stocks and display the data in browser.

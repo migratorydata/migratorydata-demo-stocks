@@ -1,10 +1,10 @@
-FROM node:10-alpine AS build-stocks-frontend
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-WORKDIR /home/node/app
-WORKDIR /home/node/app
-COPY ./package*.json ./
-USER node
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install
 
-COPY --chown=node:node . .
-RUN npm run build
+COPY . .
+
+EXPOSE 8080
+CMD npm start
