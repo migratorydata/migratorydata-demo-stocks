@@ -2,9 +2,9 @@ package com.migratorydata.demos.ticker;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		if (args.length != 5) {
-			System.err.println("USAGE: java -jar ticker.jar ServerAddress ServerPort EntitlementToken Encryption Symbols");
-			System.err.println("EXAMPLE: java -jar ticker.jar 127.0.0.1 8800 some-token false '/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI'");
+		if (args.length != 6) {
+			System.err.println("USAGE: java -jar ticker.jar ServerAddress ServerPort EntitlementToken Encryption Symbols GetSymbols");
+			System.err.println("EXAMPLE: java -jar ticker.jar 127.0.0.1 8800 some-token false '/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI' '/GET_SYMBOLS'");
 			System.exit(1);
 		}
 
@@ -16,7 +16,8 @@ public class Main {
 		publisher.connect();
 
 		String[] symbols = args[4].split("\\s*,\\s*");
-		StockFeed stockFeed = new StockFeed(publisher, symbols);
+		String getSymbols = args[5];
+		StockFeed stockFeed = new StockFeed(publisher, symbols, getSymbols);
 		stockFeed.start();
 
 		// Add a shutdown hook that will catch CTRL-C and will cleanly shutdown this publisher application

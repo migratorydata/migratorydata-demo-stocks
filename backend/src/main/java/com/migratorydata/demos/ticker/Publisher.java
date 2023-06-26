@@ -79,4 +79,19 @@ public class Publisher {
 
         client.publish(new MigratoryDataMessage(stock.getSymbol(), builder.toString().getBytes()));
     }
+
+    public void publish(String getSymbols, Stock[] stocks) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("[");
+		for (int i = 0; i < stocks.length; i++) {
+			builder.append('"').append(stocks[i].getSymbol()).append('"');
+            if (i != stocks.length - 1) {
+                builder.append(",");
+            }
+		}
+        builder.append("]");
+
+        client.publish(new MigratoryDataMessage(getSymbols, builder.toString().getBytes()));
+    }
 }
