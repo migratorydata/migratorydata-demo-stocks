@@ -11,8 +11,6 @@ services:
       - "8800:8800"
     networks:
       - my_network
-    environment:
-      MIGRATORYDATA_JAVA_EXTRA_OPTS: '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 
   stocks-agent:
     image: backend

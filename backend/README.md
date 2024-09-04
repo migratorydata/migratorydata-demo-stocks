@@ -23,5 +23,5 @@ to generate market data for the symbols `AWERQ`, `WERZF`, ... run the following 
 ```
 
 ```bash
-java -jar ./build/libs/backend.jar 127.0.0.1 8800 some-token false '/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI'
+java -jar ./build/libs/stocks.jar 127.0.0.1 8800 some-token false '/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI'
 ```
