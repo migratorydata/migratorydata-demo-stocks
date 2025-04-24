@@ -24,6 +24,7 @@ public class StockFeed extends Thread {
 	@Override
 	public void run() {
 		boolean init = true;
+		int counter = 0;
 
 		while (true) {
 			if (isInterrupted()) {
@@ -43,11 +44,16 @@ public class StockFeed extends Thread {
 					Stock stock = stocks[random.nextInt(stocks.length)];
 					stock.updateStock();
 					publisher.publish(stock);
+
+					counter++;
+					if (counter % 30 == 0) {
+       						publisher.publish(getSymbols, stocks);
+    					}
 				}
 			}
 
 			try {
-				Thread.sleep(300);
+				Thread.sleep(3000);
 			} catch (Exception e) {
 			}
 		}
