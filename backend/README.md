@@ -25,3 +25,15 @@ to generate market data for the symbols `AWERQ`, `WERZF`, ... run the following 
 ```bash
 java -jar ./build/libs/backend.jar 127.0.0.1 8800 some-token false '/AWERQ,/WERZF,/QWZAF,/TEYDF,/TYUII,/XCVSD,/POUVB,/TYEWD,/WYWUI'
 ```
+
+# Using Docker
+
+## build docker image
+
+docker build -t stocks .
+
+## Run docker image
+
+docker run -d --name mystocks --env-file params.env stocks
+
+
